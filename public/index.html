@@ -16,28 +16,34 @@
     h1 { color: #fff; font-size: 2.2rem; margin-top: 30px; }
     .heart { font-size: 50px; color: var(--red); margin-bottom: 30px; }
     
-    /* ხინკლის სექცია (გასწორებული ლოგიკით) */
-    .comparison-container { display: flex; justify-content: center; gap: 20px; margin: 30px auto; max-width: 600px; }
-    .compare-card { width: 50%; background: #1a0505; border: 2px solid #4a0404; border-radius: 15px; padding: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+    /* ფოტოების წარწერების სტილი (სურათის თავზე) */
+    .photo-title { font-size: 1.2rem; font-weight: bold; color: #ffcccc; margin-bottom: 12px; min-height: 40px; display: flex; align-items: center; justify-content: center; }
+
+    /* ხინკლის სექცია */
+    .comparison-container { display: flex; justify-content: center; gap: 20px; margin: 30px auto; max-width: 800px; }
+    .compare-card { width: 50%; background: #1a0505; border: 2px solid #4a0404; border-radius: 15px; padding: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
     .compare-card img { width: 100%; height: auto; border-radius: 10px; object-fit: contain; }
-    .compare-card p { font-size: 1.1rem; margin-top: 10px; color: #ffcccc; font-weight: bold; }
 
-    /* კონვერტი */
-    .envelope-section { margin: 50px auto; display: flex; flex-direction: column; align-items: center; }
-    .envelope { width: 120px; height: 80px; background: #e74c3c; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.4); }
-    .envelope:hover { transform: scale(1.1); background: #c0392b; }
+    /* დანარჩენი ფოტოების გალერეა */
+    .gallery-title { color: var(--red); margin-top: 60px; font-size: 1.8rem; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1000px; margin: 30px auto; padding: 10px; }
+    .gallery-item { background: #1a0505; border: 1px solid #330a0a; border-radius: 15px; padding: 15px; box-shadow: 0 8px 15px rgba(0,0,0,0.5); }
+    .gallery-item img { width: 100%; height: auto; border-radius: 10px; object-fit: contain; }
 
-    /* ფარული კითხვა */
+    /* 3D კონვერტის სექცია სულ ქვემოთ */
+    .envelope-section { margin: 60px auto 30px auto; display: flex; flex-direction: column; align-items: center; }
+    .envelope-wrapper { position: relative; width: 220px; height: 140px; background: #c0392b; border-radius: 0 0 10px 10px; cursor: pointer; box-shadow: 0 20px 30px rgba(0,0,0,0.6); transition: transform 0.4s; transform-style: preserve-3d; }
+    .envelope-wrapper:hover { transform: translateY(-10px) rotateX(10deg); }
+    .envelope-wrapper::before { content: ''; position: absolute; top: 0; left: 0; border-left: 110px solid transparent; border-right: 110px solid transparent; border-top: 80px solid #e74c3c; transform-origin: top; transition: transform 0.4s; z-index: 3; }
+    .envelope-wrapper:hover::before { transform: rotateX(180deg); border-top-color: #c0392b; }
+    .letter { position: absolute; top: 10px; left: 15px; width: 190px; height: 110px; background: #fff; z-index: 1; transition: transform 0.4s; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 1rem; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+    .envelope-wrapper:hover .letter { transform: translateY(-50px); z-index: 2; }
+
+    /* ფარული კითხვა და მოგება */
     .hidden { display: none; margin: 30px auto; max-width: 500px; padding: 25px; border: 2px dashed var(--red); border-radius: 15px; background: #150808; }
     .btn { display: block; width: 100%; padding: 12px; margin: 10px 0; cursor: pointer; background: var(--red); border: none; color: white; border-radius: 10px; font-weight: bold; font-size: 1.1rem; }
     .btn:hover { background: #ff1a0f; }
-    #success { font-size: 2rem; color: #ffd700; margin: 40px auto; display: none; font-weight: bold; max-width: 600px; text-shadow: 0 0 10px rgba(255,215,0,0.3); }
-
-    /* დანარჩენი ფოტოების გალერეა */
-    .gallery-title { color: var(--red); margin-top: 60px; font-size: 1.6rem; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 20px auto; padding: 10px; }
-    .gallery-item { background: #1a0505; border: 1px solid #330a0a; border-radius: 12px; padding: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
-    .gallery-item img { width: 100%; height: auto; border-radius: 8px; object-fit: contain; }
+    #success { font-size: 2rem; color: #ffd700; margin: 40px auto; display: none; font-weight: bold; max-width: 600px; text-shadow: 0 0 10px rgba(255,215,0,0.3); line-height: 1.4; }
   </style>
 </head>
 <body>
@@ -48,42 +54,63 @@
     <button onclick="checkPassword()">შესვლა</button>
   </div>
 
-  <h1>ჩემო სიყვარულო ნინა, მიყვარხარ!</h1>
+  <h1>ჩემო სიყვარულო ნინა მიყვახარრრრ</h1>
   <div class="heart">❤️</div>
 
   <div class="comparison-container">
     <div class="compare-card">
-      <img src="photo1.jpg">
-      <p>შენ ხინკლის მოტანამდე ⌛</p>
+      <div class="photo-title">1) შენ ხინკლის მოტანამდე ⌛</div>
+      <img src="photo2.jpg">
     </div>
     <div class="compare-card">
-      <img src="photo2.jpg">
-      <p>შენ ხინკლის მოტანის შემდეგ 🥰</p>
+      <div class="photo-title">2) შენ ხინკლის მოტანის შემდეგ 🥰</div>
+      <img src="photo1.jpg">
+    </div>
+  </div>
+
+  <h2 class="gallery-title">ჩვენი მომენტები ✨</h2>
+  <div class="gallery-grid">
+    <div class="gallery-item">
+      <div class="photo-title">3) პირველი დღე ერთად ბათუმში</div>
+      <img src="photo3.jpg">
+    </div>
+    <div class="gallery-item">
+      <div class="photo-title">4) ერთად რესტორანში ბედნიერი დღე &lt;3</div>
+      <img src="photo4.jpg">
+    </div>
+    <div class="gallery-item">
+      <div class="photo-title">5) მუცელი შეწიეო აქ მითხარი</div>
+      <img src="photo5.jpg">
+    </div>
+    <div class="gallery-item">
+      <div class="photo-title">6) თუ აქ შეწიეო მითხარი? რა მნიშვნელობა აქვს მთავარია მითხარი დდ</div>
+      <img src="photo6.jpg">
+    </div>
+    <div class="gallery-item">
+      <div class="photo-title">7) შენ 1 ბაკალი ლუდის შემდეგ:</div>
+      <img src="photo7.jpg">
+    </div>
+    <div class="gallery-item">
+      <div class="photo-title">8) შენ ქლეშ როიალში უძლიერესი ხელის მოგების შემდეგ:</div>
+      <img src="photo8.jpg">
     </div>
   </div>
 
   <div class="envelope-section">
-    <div class="envelope" onclick="openLetter()">✉️</div>
+    <h3 style="color: var(--red); margin-bottom: 20px;">✉️ გახსენი წერილი</h3>
+    <div class="envelope-wrapper" onclick="openLetter()">
+      <div class="letter">ნინასთვის 💌</div>
+    </div>
   </div>
 
   <div id="hidden-content" class="hidden">
-    <p style="font-size: 1.3rem; margin-bottom: 20px;">დეითზე ხომ არ წავსულიყავით?</p>
+    <p style="font-size: 1.4rem; margin-bottom: 20px; font-weight: bold;">ძვირფასო ნინა დეითზე ხომ არ წავსულიყავით?</p>
     <button class="btn" onclick="win()">1) კი</button>
     <button class="btn" onclick="win()">2) რაზეა საუბარი რათქმაუნდა წამოვალ</button>
   </div>
 
   <div id="success">
     გილოცააავ შენ მოიგე 10 ხინკალი 1 ცეზარი და 1 ბაკალი ლუდი ოქროს ნალში 🍻
-  </div>
-
-  <h2 class="gallery-title">ჩვენი მომენტები ✨</h2>
-  <div class="gallery-grid">
-    <div class="gallery-item"><img src="photo3.jpg"></div>
-    <div class="gallery-item"><img src="photo4.jpg"></div>
-    <div class="gallery-item"><img src="photo5.jpg"></div>
-    <div class="gallery-item"><img src="photo6.jpg"></div>
-    <div class="gallery-item"><img src="photo7.jpg"></div>
-    <div class="gallery-item"><img src="photo8.jpg"></div>
   </div>
 
   <script>
