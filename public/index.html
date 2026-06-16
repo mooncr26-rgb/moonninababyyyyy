@@ -8,30 +8,43 @@
     :root { --red: #ff3b30; --dark: #0f0505; }
     body { background: var(--dark); color: #fff; font-family: 'Georgia', serif; text-align: center; margin: 0; padding: 20px; }
     
-    /* 3D Envelope Styles */
-    .envelope-container { perspective: 1000px; margin: 40px auto; display: flex; justify-content: center; }
-    .envelope { 
-      width: 200px; height: 140px; background: #e74c3c; border-radius: 5px; 
-      position: relative; cursor: pointer; transition: transform 0.4s;
-      box-shadow: 0 15px 25px rgba(0,0,0,0.5); transform-style: preserve-3d;
-    }
-    .envelope:hover { transform: translateY(-10px) rotateX(10deg); }
-    .envelope::after { 
-      content: '✉️'; font-size: 60px; position: absolute; top: 50%; left: 50%; 
-      transform: translate(-50%, -50%); color: white; text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-    }
-
-    /* Before/After Layout */
-    .comparison-container { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
-    .compare-card { width: 45%; max-width: 250px; }
-    .compare-card img { width: 100%; border-radius: 10px; border: 2px solid var(--red); }
-
-    /* დანარჩენი სტილები */
+    /* პაროლის ეკრანი */
     #password-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--dark); z-index: 9999; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    input { padding: 15px; border-radius: 10px; border: 1px solid var(--red); background: #222; color: white; font-size: 1.2rem; text-align: center; }
-    button { margin-top: 15px; padding: 10px 30px; background: var(--red); color: white; border: none; border-radius: 10px; cursor: pointer; }
-    .hidden { display: none; margin-top: 20px; }
-    #success { font-size: 2rem; color: #ffd700; margin-top: 30px; display: none; font-weight: bold; }
+    #password-overlay input { padding: 15px; border-radius: 10px; border: 1px solid var(--red); background: #222; color: white; font-size: 1.2rem; text-align: center; }
+    #password-overlay button { margin-top: 15px; padding: 10px 30px; background: var(--red); color: white; border: none; border-radius: 10px; cursor: pointer; font-weight: bold; }
+
+    h1 { color: var(--red); letter-spacing: 2px; margin-top: 30px; }
+    
+    /* Before/After სექცია */
+    .comparison-container { display: flex; justify-content: center; gap: 20px; margin: 30px auto; max-width: 600px; }
+    .compare-card { width: 50%; background: #1a0505; border: 2px solid #4a0404; border-radius: 15px; padding: 10px; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+    .compare-card img { width: 100%; height: auto; border-radius: 10px; object-fit: contain; }
+    .compare-card p { font-size: 1.1rem; margin-top: 10px; color: #ffcccc; }
+
+    /* მთავარი გალერეის ბადე დანარჩენი ფოტოებისთვის */
+    .gallery-title { color: var(--red); margin-top: 60px; font-size: 1.8rem; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; max-width: 1000px; margin: 30px auto; padding: 10px; }
+    .photo-card { background: #1a0505; border: 1px solid #330a0a; border-radius: 15px; overflow: hidden; box-shadow: 0 8px 15px rgba(0,0,0,0.5); transition: 0.3s; }
+    .photo-card:hover { transform: translateY(-5px); border-color: var(--red); }
+    .photo-card img { width: 100%; height: 400px; object-fit: cover; }
+    .photo-caption { padding: 15px; font-size: 1.1rem; color: #eee; border-top: 1px solid #330a0a; }
+
+    /* დიდი 3D კონვერტი */
+    .envelope-section { margin: 80px auto 40px auto; display: flex; flex-direction: column; align-items: center; }
+    .envelope-wrapper { position: relative; width: 220px; height: 140px; background: #c0392b; border-radius: 0 0 10px 10px; cursor: pointer; box-shadow: 0 20px 30px rgba(0,0,0,0.6); transition: transform 0.4s; transform-style: preserve-3d; }
+    .envelope-wrapper:hover { transform: translateY(-10px) rotateX(10deg); }
+    /* კონვერტის სახურავი */
+    .envelope-wrapper::before { content: ''; position: absolute; top: 0; left: 0; border-left: 110px solid transparent; border-right: 110px solid transparent; border-top: 80px solid #e74c3c; transform-origin: top; transition: transform 0.4s; z-index: 3; }
+    .envelope-wrapper:hover::before { transform: rotateX(180px); border-top-color: #c0392b; }
+    /* წერილი შიგნიდან */
+    .letter { position: absolute; top: 10px; left: 15px; width: 190px; height: 110px; background: #fff; z-index: 1; transition: transform 0.4s; border-radius: 5px; display: flex; align-items: center; justify-content: center; color: #000; font-weight: bold; font-size: 0.9rem; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+    .envelope-wrapper:hover .letter { transform: translateY(-50px); z-index: 2; }
+
+    /* ფარული კონტენტი და ღილაკები */
+    .hidden { display: none; margin: 30px auto; max-width: 500px; padding: 20px; border: 2px dashed var(--red); border-radius: 15px; background: #150808; }
+    .btn { padding: 15px 25px; margin: 10px; cursor: pointer; background: var(--red); border: none; color: white; border-radius: 10px; font-weight: bold; font-size: 1rem; transition: 0.2s; }
+    .btn:hover { background: #ff1a0f; transform: scale(1.05); }
+    #success { font-size: 2rem; color: #ffd700; margin: 40px auto; display: none; line-height: 1.5; font-weight: bold; max-width: 600px; text-shadow: 0 0 10px rgba(255,215,0,0.3); }
   </style>
 </head>
 <body>
@@ -44,42 +57,82 @@
 
   <h1>ჩემო სიყვარულო ნინა, მიყვარხარ!</h1>
 
-  <h3>ხინკლის მოტანამდე vs შემდეგ</h3>
   <div class="comparison-container">
     <div class="compare-card">
-      <img src="photo1.jpg">
-      <p>შენ ხინკლის მოტანამდე</p>
+      <img src="photo_2026-06-16_17-56-50.jpg">
+      <p>ნინა ხინკლის მოტანამდე ⌛</p>
     </div>
     <div class="compare-card">
-      <img src="photo2.jpg">
-      <p>შენ ხინკლის მოტანის შემდეგ</p>
+      <img src="photo_2026-06-16_17-56-52.jpg">
+      <p>ნინა ხინკლის მოტანის შემდეგ 🥰</p>
     </div>
   </div>
 
-  <div class="envelope-container" onclick="openEnvelope()">
-    <div class="envelope"></div>
+  <div class="envelope-section">
+    <h3 style="color: var(--red);">✉️ მიიტანე მაუსი და დააკლიკე კონვერტს</h3>
+    <div class="envelope-wrapper" onclick="openLetter()">
+      <div class="letter">გახსენი წერილი 💌</div>
+    </div>
   </div>
 
   <div id="hidden-content" class="hidden">
-    <p>ძვირფასო ნინა, დეითზე ხომ არ წავსულიყავით?</p>
-    <button onclick="win()">1) კი</button>
-    <button onclick="win()">2) რაზეა საუბარი რათქმაუნდა წამოვალ</button>
+    <h3 style="color: var(--red);">ძვირფასო ნინა... ❤️</h3>
+    <p style="font-size: 1.3rem;">დეითზე ხომ არ წავსულიყავით სადმე ლამაზ ადგილას?</p>
+    <button class="btn" onclick="win()">1) კი, დიდი სიამოვნებით!</button>
+    <button class="btn" onclick="win()">2) რაზეა საუბარი, რა თქმა უნდა წამოვალ!</button>
   </div>
 
-  <div id="success">გილოცააავ! შენ მოიგე 10 ხინკალი, 1 ცეზარი და 1 ბაკალი ლუდი ოქროს ნალში!</div>
+  <div id="success">
+    🎉 გილოცააავ! შენ მოიგე 10 ხინკალი, 1 ცეზარი და 1 ბაკალი ცივი ლუდი ოქროს ნალში! 🍻
+  </div>
+
+  <h2 class="gallery-title">ჩვენი ბედნიერი მომენტები ✨</h2>
+  <div class="gallery-grid">
+    <div class="photo-card">
+      <img src="photo_2026-06-16_17-56-49.jpg">
+      <div class="photo-caption">ჩვენი გასეირნება ერთად 🚗</div>
+    </div>
+    <div class="photo-card">
+      <img src="photo_2026-06-16_17-56-47.jpg">
+      <div class="photo-caption">ულამაზესი საღამო 💙</div>
+    </div>
+    <div class="photo-card">
+      <img src="photo_2026-06-16_17-56-45.jpg">
+      <div class="photo-caption">კიდევ ერთი კადრი იმავე საღამოდან 😍</div>
+    </div>
+    <div class="photo-card">
+      <img src="photo_2026-06-16_17-56-43.jpg">
+      <div class="photo-caption">საუკეთესო წყვილი 🤍</div>
+    </div>
+    <div class="photo-card">
+      <img src="photo_2026-06-16_17-56-41.jpg">
+      <div class="photo-caption">როცა ჩუმად გიღებ ფოტოს 📸</div>
+    </div>
+    <div class="photo-card">
+      <img src="photo_2026-06-16_17-56-39.jpg">
+      <div class="photo-caption">შენი ულამაზესი ღიმილი ძილის წინ 😴❤️</div>
+    </div>
+  </div>
 
   <script>
     function checkPassword() {
-      if (document.getElementById('passInput').value === 'MOONNINA26') {
+      const pass = document.getElementById('passInput').value;
+      if (pass === 'MOONNINA26') {
         document.getElementById('password-overlay').style.display = 'none';
-      } else { alert('არასწორია!'); }
+      } else {
+        alert('არასწორი პაროლია, საყვარელო! ვცადოთ თავიდან 😉');
+      }
     }
-    function openEnvelope() {
+
+    function openLetter() {
       document.getElementById('hidden-content').style.display = 'block';
+      document.getElementById('hidden-content').scrollIntoView({ behavior: 'smooth' });
     }
+    
     function win() {
       document.getElementById('hidden-content').style.display = 'none';
       document.getElementById('success').style.display = 'block';
+      document.getElementById('success').scrollIntoView({ behavior: 'smooth' });
     }
   </script>
 </body>
