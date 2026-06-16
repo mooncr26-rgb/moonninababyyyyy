@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ჩემო სიყვარულო</title>
+  <style>
+    :root { --red: #ff3b30; --dark: #0f0505; }
+    body { background: var(--dark); color: #fff; font-family: 'Georgia', serif; text-align: center; padding: 20px; margin: 0; }
+    
+    /* Header & Heart */
+    h1 { color: var(--red); letter-spacing: 3px; margin-bottom: 20px; }
+    .heart { font-size: 50px; cursor: pointer; animation: glow 1.5s infinite alternate; }
+    @keyframes glow { from { text-shadow: 0 0 10px #ff0000; } to { text-shadow: 0 0 30px #ff0000; } }
+    
+    /* Gallery */
+    .gallery { display: flex; flex-direction: column; gap: 15px; max-width: 500px; margin: 0 auto 50px auto; }
+    .card { background: #1a0505; border: 2px solid #4a0404; border-radius: 15px; overflow: hidden; cursor: pointer; transition: 0.4s; }
+    .card img { width: 100%; height: 300px; object-fit: cover; }
+    .caption { padding: 0 15px; max-height: 0; overflow: hidden; transition: 0.4s; color: #ffcccc; font-size: 1.2rem; }
+    .card.active { border-color: var(--red); }
+    .card.active .caption { max-height: 100px; padding: 15px; }
+
+    /* Envelope Section */
+    .envelope-box { margin-top: 50px; padding: 30px; border: 2px dashed var(--red); border-radius: 20px; cursor: pointer; }
+    .hidden { display: none; margin-top: 20px; }
+    .btn { padding: 15px 25px; margin: 10px; cursor: pointer; background: var(--red); border: none; color: white; border-radius: 10px; font-weight: bold; }
+    
+    #success { font-size: 2rem; color: #ffd700; margin-top: 30px; display: none; line-height: 1.4; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+  <h1>ჩემო სიყვარულო ნინა, მიყვარხარ!</h1>
+  <div class="heart" onclick="alert('მიყვარხარ <3')">❤️</div>
+
+  <div class="gallery" id="gallery">
+    <div class="card" onclick="this.classList.toggle('active')"><img src="photo1.jpg"><div class="caption">შენ ხინკლის მოტანამდე</div></div>
+    <div class="card" onclick="this.classList.toggle('active')"><img src="photo2.jpg"><div class="caption">შენ ხინკლის მოტანის შემდეგ</div></div>
+    <div class="card" onclick="this.classList.toggle('active')"><img src="photo3.jpg"><div class="caption">პირველი დღე ერთად ბათუმში</div></div>
+    <div class="card" onclick="this.classList.toggle('active')"><img src="photo4.jpg"><div class="caption">ერთად რესტორანში ბედნიერი დღე <3</div></div>
+    <div class="card" onclick="this.classList.toggle('active')"><img src="photo5.jpg"><div class="caption">მუცელი შეწიეო აქ მითხარი</div></div>
+    <div class="card" onclick="this.classList.toggle('active')"><img src="photo6.jpg"><div class="caption">თუ აქ შეწიეო მითხარი? რა მნიშვნელობა აქვს მთავარია მითხარი დდ</div></div>
+    <div class="card" onclick="this.classList.toggle('active')"><img src="photo7.jpg"><div class="caption">შენ 1 ბაკალი ლუდის შემდეგ</div></div>
+    <div class="card" onclick="this.classList.toggle('active')"><img src="photo8.jpg"><div class="caption">შენ ქლეშ როიალში უძლიერესი ხელის მოგების შემდეგ</div></div>
+  </div>
+
+  <div class="envelope-box" onclick="document.getElementById('hidden-content').style.display='block'">
+    <h3>✉️ დააკლიკე კონვერტს</h3>
+  </div>
+
+  <div id="hidden-content" class="hidden">
+    <p>ძვირფასო ნინა, დეითზე ხომ არ წავსულიყავით?</p>
+    <button class="btn" onclick="win()">1) კი</button>
+    <button class="btn" onclick="win()">2) რაზეა საუბარი რათქმაუნდა წამოვალ</button>
+  </div>
+
+  <div id="success">
+    გილოცააავ! შენ მოიგე 10 ხინკალი, 1 ცეზარი და 1 ბაკალი ლუდი ოქროს ნალში!
+  </div>
+
+  <script>
+    function win() {
+      document.getElementById('hidden-content').style.display = 'none';
+      document.getElementById('success').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
